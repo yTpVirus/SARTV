@@ -1,0 +1,41 @@
+﻿*Exemplo de Manager de Corrida!*
+//Cuida da Criação e Deleção de CheckPoints Durante a Corrida
+private async Task CPManager_Tick()
+        {
+            Vector3 p = Game.PlayerPed.Position;
+            if (cl.Count > 0)
+            {
+                Vector3 c = pl[0];
+                float d = Vector3.Distance(c,p);
+                Debug.WriteLine($"Distancia {d} COORDENADA {c}");
+                if (cl.Count > 2)
+                {
+                    if (d < 10)
+                    {
+                        DeleteCheckpoint(cl[0].Handle);
+                        Debug.WriteLine("deletado?");
+                    }
+                }
+            }
+            
+            await Delay(100);
+        }
+
+        *EXEMPLO DE LOAD DA CORRIDA*
+
+        //LISTAS
+        private static List<Vector3> pl = new List<Vector3>();
+        private static List<Checkpoint> cl = new List<Checkpoint>();
+        //
+                private void load()
+        {
+            for (int i = 0; i < pl.Count; i++)
+            {
+                if (i < pl.Count)
+                {
+                    if (cl[i] == cl.Last()) { Checkpoint c = World.CreateCheckpoint(CheckpointIcon.CylinderDoubleArrow, pl[i], Vector3.Zero, 7, Color.FromArgb(100, 0, 60, 255)); }
+                    else { Checkpoint c = World.CreateCheckpoint(CheckpointIcon.CylinderDoubleArrow, pl[i], pl[i + 1], 7, Color.FromArgb(100, 0, 60, 255)); }
+                }
+                DeleteCheckpoint(cl[i].Handle);
+            }
+        }
