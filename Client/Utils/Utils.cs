@@ -77,7 +77,6 @@ namespace Client.Utils
                 Debug.WriteLine($"INDEX: {i}, COUNT: {Instructions.Count}");
                 scale.CallFunction("SET_DATA_SLOT", int.Parse(Instructions[i][0]), Instructions[i][1], Instructions[i][2]);
             }
-            //GetControlInstructionalButton();
             scale.CallFunction("SET_BACKGROUND_COLOUR",0,0,0,80);
             scale.CallFunction("DRAW_INSTRUCTIONAL_BUTTONS");
             Debug.WriteLine($"{scale.IsValid}");
