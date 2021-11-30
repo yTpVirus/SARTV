@@ -25,7 +25,7 @@ namespace Client.Managers
         private static readonly Vector3[] SlotCameras =
         {   
             new Vector3(983.00f,-3000.00f,-39.00f),
-            //^^ Posição PADRÃO!^^
+            //^^Posição PADRÃO!^^
             new Vector3(959.00f,-3020.50f,-39.00f),
             new Vector3(959.00f,-3025.50f,-39.00f),
             new Vector3(959.00f,-3030.50f,-39.00f),
