@@ -25,6 +25,7 @@ namespace Client.Menus.Tuning
         {
             var veh = GarageManager.VehiclesOnSpot[0];
             menu.MenuTitle = $"{veh.LocalizedName}";
+            menu.ClearMenuItems();
             veh.Mods.GetAllMods().ToList().ForEach((mod)=> 
             {
                 //Add ModTypeMenu

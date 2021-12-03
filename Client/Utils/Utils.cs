@@ -22,12 +22,14 @@ namespace Client.Utils
         private static bool EnableForm = false;
         private static bool RenderHelp = false;
         public static bool EnableWait = false;
+        public static bool isTrafficEnabled = false;
         private static int countTime = 5;
         public Utils()
         {
             EventHandlers["TriggerNotify"] += new Action<int,string,string>(Notify);
             //Draw WaterMar
             Drawwatermark();
+            DisableTraffic();
         }
 
         private async void Drawwatermark()
@@ -268,6 +270,23 @@ namespace Client.Utils
                     EnableForm = false;
                     await Delay(0);
                 }
+            }
+        }
+        public async void DisableTraffic()
+        {
+            while (!isTrafficEnabled)
+            {
+                await Delay(0);
+                var pos = LocalPlayer.Character.Position;
+                SetPedDensityMultiplierThisFrame(0f);
+                SetScenarioPedDensityMultiplierThisFrame(0f,0f);
+                //Disable Cars
+                SetVehicleDensityMultiplierThisFrame(0f);
+                SetRandomVehicleDensityMultiplierThisFrame(0f);
+                SetParkedVehicleDensityMultiplierThisFrame(0f);
+                RemoveVehiclesFromGeneratorsInArea(pos.X - 500.0f, pos.Y - 500.0f, pos.Z - 500.0f, pos.X + 500.0f, pos.Y + 500.0f, pos.Z + 500.0f,0);
+                SetGarbageTrucks(false);
+                SetRandomBoats(false);
             }
         }
     }

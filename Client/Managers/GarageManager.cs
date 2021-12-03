@@ -8,6 +8,7 @@ using Client.Utils;
 using static Client.vData.RAM;
 using Newtonsoft.Json;
 using Client.Menus.Tuning_Admin_;
+using System.Drawing;
 
 namespace Client.Managers
 {
@@ -17,9 +18,12 @@ namespace Client.Managers
         public static List<Vehicle> VehiclesOnSpot = new List<Vehicle>();
         //
         private static Vector3 Outside = new Vector3(1001.5f, -1859.6f, 30.5f);
+        private static Vector3 Inside = new Vector3(995.12f,-1859,29f);
         //
         Blip Garage = World.CreateBlip(Outside);
+        Checkpoint checkpoint = World.CreateCheckpoint(CheckpointIcon.CylinderSingleArrow2, Inside, Vector3.Zero, 4, Color.FromArgb(120, 0, 80, 255));
         public static bool IsOnGarage = false;
+        private static int InteractDistance = 3;
         //
         private Vector4[] spots =
         {
@@ -48,6 +52,7 @@ namespace Client.Managers
             //KeyMaps
             KeyManager.RegisterKeyMap("Ligar/Desligar Veículo (Garagem)","i",new Action(ToggleVehicleEngine));
             KeyManager.RegisterKeyMap("Abrir/Fechar Portas do Veículo (Garagem)","space",new Action(ToggleVehicleDoors));
+            KeyManager.RegisterKeyMap("Entrar na Garagem","e",new Action(Check));
             Instructions.Add(AFCarro);
             Instructions.Add(LDCarro);
             Instructions.Add(WASD);
@@ -59,11 +64,21 @@ namespace Client.Managers
             //Instructions.Add(D);
             //
             Garage.Sprite = BlipSprite.Garage;
-            Garage.Name = "Sua Mãe";
+            Garage.Name = "Garagem";
+            //Checkpoint
+            SetCheckpointCylinderHeight(checkpoint.Handle,2,2,4);
+            SetCheckpointIconRgba(checkpoint.Handle,255,255,255,120);
             //
             EventHandlers["teste"] += new Action<string>(StartGarage);
             //
             Veryfier();
+        }
+
+        private void Check()
+        {
+            if (!Game.PlayerPed.IsInVehicle()) { return; }
+            if (Vector3.Distance(Game.PlayerPed.CurrentVehicle.Position,Inside) > InteractDistance) { return;}
+            EntrarG();
         }
 
         private async void Veryfier()
