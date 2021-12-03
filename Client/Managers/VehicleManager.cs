@@ -19,7 +19,7 @@ namespace Client.Managers
 
         public VehicleManager()
         {
-            RegisterCommand("Save",new Action(()=> { if (Game.PlayerPed.IsInVehicle()) { SaveVehicleIntoJSON(Game.PlayerPed.CurrentVehicle,true);} }),false);
+            RegisterCommand("Save",new Action(()=> { if (Game.PlayerPed.IsInVehicle()) { SaveVehicleIntoJSON(Game.PlayerPed.CurrentVehicle);} }),false);
         }
 
         private static Dictionary<int,bool> GetVehicleExtras(Vehicle veh)
@@ -33,7 +33,7 @@ namespace Client.Managers
         }
 
 
-        public static void SaveVehicleIntoJSON(Vehicle veh,bool wasCommand)
+        public static void SaveVehicleIntoJSON(Vehicle veh)
         {
             if (veh.Exists())
             {
