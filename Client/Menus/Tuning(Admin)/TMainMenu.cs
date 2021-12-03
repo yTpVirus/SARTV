@@ -43,7 +43,7 @@ namespace Client.Menus.Tuning_Admin_
         }
         private void Close(Menu menu)
         {
-            if (tMain == menu) { Garage.GarageMenu.OpenGMenu(); VehicleManager.SaveVehicleIntoJSON(GarageManager.VehiclesOnSpot[0],false);}
+            if (tMain == menu) { Garage.GarageMenu.OpenGMenu(); VehicleManager.SaveVehicleIntoJSON(GarageManager.VehiclesOnSpot[0]);}
         }
 
         public static void RegisterAllPossibleMods()

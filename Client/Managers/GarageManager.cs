@@ -17,10 +17,9 @@ namespace Client.Managers
         //garagePos 
         public static List<Vehicle> VehiclesOnSpot = new List<Vehicle>();
         //
-        private static Vector3 Outside = new Vector3(1001.5f, -1859.6f, 30.5f);
+        private static Vector3 GarageBlip = new Vector3(1001.5f, -1859.6f, 30.5f);
         private static Vector3 Inside = new Vector3(995.12f,-1859,29f);
         //
-        Blip Garage = World.CreateBlip(Outside);
         Checkpoint checkpoint = World.CreateCheckpoint(CheckpointIcon.CylinderSingleArrow2, Inside, Vector3.Zero, 4, Color.FromArgb(120, 0, 80, 255));
         public static bool IsOnGarage = false;
         private static int InteractDistance = 3;
@@ -63,15 +62,13 @@ namespace Client.Managers
             //Instructions.Add(S);
             //Instructions.Add(D);
             //
-            Garage.Sprite = BlipSprite.Garage;
-            Garage.Name = "Garagem";
+            BlipManager.RegisterBlip(GarageBlip,255,"Garagem",1,BlipSprite.Garage);
             //Checkpoint
             SetCheckpointCylinderHeight(checkpoint.Handle,2,2,4);
             SetCheckpointIconRgba(checkpoint.Handle,255,255,255,120);
             //
             EventHandlers["teste"] += new Action<string>(StartGarage);
             //
-            Veryfier();
         }
 
         private void Check()
@@ -79,19 +76,6 @@ namespace Client.Managers
             if (!Game.PlayerPed.IsInVehicle()) { return; }
             if (Vector3.Distance(Game.PlayerPed.CurrentVehicle.Position,Inside) > InteractDistance) { return;}
             EntrarG();
-        }
-
-        private async void Veryfier()
-        {
-            while (true)
-            {
-                await Delay(0);
-                if(RaceManager.IsOnRace == false && IsOnGarage == false)
-                {
-                    Garage.Alpha = 255;
-                }
-                else { Garage.Alpha = 0; }
-            }
         }
 
         private void ToggleVehicleDoors()
@@ -167,7 +151,7 @@ namespace Client.Managers
             TriggerServerEvent("SetLastUsed",clientData.userToken,clientData.CurrentVehicle.Model.Hash);
             IsOnGarage = false;
             Game.PlayerPed.SetIntoVehicle(clientData.CurrentVehicle, VehicleSeat.Driver);
-            Game.PlayerPed.CurrentVehicle.Position = Outside;
+            Game.PlayerPed.CurrentVehicle.Position = GarageBlip;
             Game.PlayerPed.CurrentVehicle.IsPositionFrozen = true;
             Game.PlayerPed.CurrentVehicle.Heading = 173.00f;
             await Delay(3000);
