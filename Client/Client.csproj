@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audio\AudioManager.cs" />
+    <Compile Include="Managers\BlipManager.cs" />
     <Compile Include="Managers\ConcManager.cs" />
     <Compile Include="Managers\CameraManager.cs" />
     <Compile Include="Managers\PositionManager.cs" />
