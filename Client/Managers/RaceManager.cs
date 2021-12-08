@@ -63,9 +63,6 @@ namespace Client.Managers
             race.cl.ForEach((v) => { cl.Add(v); });
             race.sl.ForEach((v) => { sl.Add(v); });
             race.Hs.ForEach((v) => { hs.Add(v); });
-            Debug.WriteLine($"{cl.Count}");
-            Debug.WriteLine($"{sl.Count}");
-            Debug.WriteLine($"{hs.Count}");
             //SetUpRace
             DoScreenFadeOut(1000);
             await Delay(1000);

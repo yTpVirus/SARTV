@@ -11,9 +11,11 @@ namespace Client.Managers
 {
     class ConcManager:BaseScript
     {
+        private Vector3 blipP = new Vector3(-43f, -1098f, 26f);
         public ConcManager()
         {
-            StartConc();
+            //StartConc();
+            BlipManager.RegisterBlip(blipP,255,"Concessionária",1,BlipSprite.PersonalVehicleCar);
         }
 
         private async void StartConc()

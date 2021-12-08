@@ -135,7 +135,6 @@ namespace Client.Managers
                     var R = vehicles[i].NeonColorARGB[1];
                     var G = vehicles[i].NeonColorARGB[2];
                     var B = vehicles[i].NeonColorARGB[3];
-                    //SetVehicleNeonLightsColour(v.Handle,R,G,B);
                     v.Mods.NeonLightsColor = Color.FromArgb(A,R,G,B);
                     SetVehicleHeadlightsColour(v.Handle, vehicles[i].HeadlightColor);
                     //

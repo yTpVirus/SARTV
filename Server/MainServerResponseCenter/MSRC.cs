@@ -31,7 +31,6 @@ namespace Server.MainServerResponseCenter
             CreateNewDBFile("PlayerData");
             CreateNewDBFile("ReplayData");
         }
-
         private async void SetLastUsedVehicle([FromSource]Player player, string userToken,int hash)
         {   
             ExecuteRawSQLCommand("PlayerVehData", $"UPDATE a{userToken} SET LastUsed='{0}';");

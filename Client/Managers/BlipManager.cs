@@ -43,7 +43,7 @@ namespace Client.Managers
                 await Delay(0);
                 if (RaceManager.IsOnRace == false && GarageManager.IsOnGarage == false)
                 {
-                    blips.ForEach((b) => { if (b.Alpha != 255) { b.Alpha = 255; Debug.WriteLine($"{blips[0].IsOnMinimap}"); } });
+                    blips.ForEach((b) => { if (b.Alpha != 255) { b.Alpha = 255; } });
                 }
                 else { blips.ForEach((b) => { if (b.Alpha != 0) { b.Alpha = 0; } });}
             }
