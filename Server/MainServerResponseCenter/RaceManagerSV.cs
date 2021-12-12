@@ -51,7 +51,6 @@ namespace Server.MainServerResponseCenter
                 if (p != player)
                 {
                     NotifyPlayer(p, 3, $" {player.Name} Terminou!\n Pos: {Place}° Lugar!");
-                    p.TriggerEvent("SetFinished",p.Handle);
                 }
             }
             lobby.Players[player].Finished = true;

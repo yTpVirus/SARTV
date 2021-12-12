@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audio\AudioManager.cs" />
+    <Compile Include="Conc\StarterConc.cs" />
     <Compile Include="Managers\BlipManager.cs" />
     <Compile Include="Managers\ConcManager.cs" />
     <Compile Include="Managers\CameraManager.cs" />
@@ -101,7 +102,6 @@
     <Content Include="Menus\Exemplos.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Conc\" />
     <Folder Include="Menus\Tuning%28Admin%29\Submenus\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

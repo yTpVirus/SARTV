@@ -25,14 +25,6 @@ namespace Client.Managers
         public PositionManager()
         {
             EventHandlers["SendLobbyPlayerList"] += new Action<string>(SetRacePlayerList);
-            EventHandlers["SetFinished"] += new Action<int>(SetFinished);
-        }
-
-        private void SetFinished(int id)
-        {
-            var plrped = Players[id].Character;
-            var newedit = new Tuple<int, float>(RaceManager.cl.Count,0);
-            srtdlist[plrped] = newedit;
         }
 
         private void SetRacePlayerList(string pl )

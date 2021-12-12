@@ -12,6 +12,7 @@ namespace Client.Managers
     class ConcManager:BaseScript
     {
         private Vector3 blipP = new Vector3(-43f, -1098f, 26f);
+        public static List<int> Starter = new List<int>();
         public ConcManager()
         {
             //StartConc();

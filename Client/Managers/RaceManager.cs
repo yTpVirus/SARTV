@@ -20,7 +20,6 @@ namespace Client.Managers
         private static List<Vector3> sl = new List<Vector3>();
         private static List<float> hs = new List<float>();
         //Checks
-        //public static List<Checkpoint> cC = new List<Checkpoint>();
         public static string RaceName = "";
         public static string RaceClass = "";
         public static Checkpoint first;
@@ -163,6 +162,7 @@ namespace Client.Managers
         //Check if Player Finished
         private async void CheckFinish()
         {
+            await Delay(0);
             Debug.WriteLine("Terminou a Corrida!");
             cl.Clear();
             sl.Clear();
@@ -196,8 +196,8 @@ namespace Client.Managers
             }
             SetVehicleIsRacing(veh.Handle, false);
             cIndex = 0;
-            await Delay(1000);
             veh.IsPositionFrozen = true;
+            veh.Position = cl.Last();
         }
         //Set up Race
         private static void SetupSpawnAndCheks(int spawnIndex)

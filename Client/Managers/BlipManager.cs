@@ -20,19 +20,23 @@ namespace Client.Managers
         {
             Blip b = World.CreateBlip(Pos);
             b.Alpha = alpha;
-            b.Name = Name;
             b.Scale = Scale;
             b.Sprite = Sprite;
             b.Color = Color;
+            BeginTextCommandSetBlipName("STRING");
+            AddTextComponentString(Name);
+            EndTextCommandSetBlipName(b.Handle);
             blips.Add(b);
         }
         public static void RegisterBlip(Vector3 Pos, int alpha, string Name, float Scale, BlipSprite Sprite)
         {
             Blip b = World.CreateBlip(Pos);
             b.Alpha = alpha;
-            b.Name = Name;
             b.Scale = Scale;
             b.Sprite = Sprite;
+            BeginTextCommandSetBlipName("STRING");
+            AddTextComponentString(Name);
+            EndTextCommandSetBlipName(b.Handle);
             blips.Add(b);
         }
 
